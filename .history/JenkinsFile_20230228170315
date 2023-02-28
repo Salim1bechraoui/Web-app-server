@@ -14,8 +14,8 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'tomcat_deployer', usernameVariable: 'tomcat', passwordVariable: 's3cret')]) {
-          sh 'curl -u tomcat:s3cret "$TOMCAT_URL/manager/text/deploy?path=/&war=file:$WORKSPACE/**/*.war"'
+        withCredentials([usernamePassword(credentialsId: 'tomcat_deployer', usernameVariable: 'deployer', passwordVariable: 'deployer')]) {
+          sh 'curl -u deployer:deployer "$TOMCAT_URL/manager/text/deploy?path=/&war=file:$WORKSPACE/**/*.war"'
         }
       }
     }
